@@ -416,4 +416,4 @@ replace sourcegraph.com/sourcegraph/appdash => github.com/sourcegraph/appdash v0
 
 replace sourcegraph.com/sourcegraph/appdash-data => github.com/sourcegraph/appdash-data v0.0.0-20151005221446-73f23eafcf67
 
-replace github.com/pingcap/tidb v1.1.0-beta.0.20240613051929-f124165c9be4 => github.com/monographdb/tidb v0.0.0-20240624074058-512650a57a03
+replace github.com/pingcap/tidb v1.1.0-beta.0.20240613051929-f124165c9be4 => github.com/monographdb/tidb v0.0.0-20240628042414-27cdbc5c74e4

@@ -781,6 +781,8 @@ github.com/monographdb/tidb v0.0.0-20240624062323-7a473d4c63ba h1:ySZfOvjomk6oKd
 github.com/monographdb/tidb v0.0.0-20240624062323-7a473d4c63ba/go.mod h1:CdsHk6Nc0TuJ4h5t4aYI+W/Nw1taGnma61j7rjcvueg=
 github.com/monographdb/tidb v0.0.0-20240624074058-512650a57a03 h1:4FWZjlR/+woS1nKxsMbx3vvfjHNjhvuUdgdGB75qaJ0=
 github.com/monographdb/tidb v0.0.0-20240624074058-512650a57a03/go.mod h1:CdsHk6Nc0TuJ4h5t4aYI+W/Nw1taGnma61j7rjcvueg=
+github.com/monographdb/tidb v0.0.0-20240628042414-27cdbc5c74e4 h1:CgihF60JyFRF04zYLcZeCSfgKn3oMQjQ+Tl1F0pJ9y4=
+github.com/monographdb/tidb v0.0.0-20240628042414-27cdbc5c74e4/go.mod h1:CdsHk6Nc0TuJ4h5t4aYI+W/Nw1taGnma61j7rjcvueg=
 github.com/moul/http2curl v1.0.0 h1:dRMWoAtb+ePxMlLkrCbAqh4TlPHXvoGUSQ323/9Zahs=
 github.com/moul/http2curl v1.0.0/go.mod h1:8UbvGypXm98wA/IqH45anm5Y2Z6ep6O31QGOAZ3H0fQ=
 github.com/mtibben/percent v0.2.1 h1:5gssi8Nqo8QU/r2pynCm+hBQHpkB/uNK7BJCFogWdzs=
