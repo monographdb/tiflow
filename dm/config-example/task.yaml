@@ -1,0 +1,26 @@
+# Task name. Each of the multiple tasks running at the same time must have a unique name.
+name: "dmtest"
+# Task mode. Options are:
+# full: only performs full data migration.
+# incremental: only performs binlog real-time replication.
+# all: full data migration + binlog real-time replication.
+task-mode: "all"
+# The configuration of the target EloqSQL database.
+target-database:
+  host: "127.0.0.1"
+  port: 3316
+  user: "eloq"
+  password: "eloq" # Plaintext password is supported but not recommended. It is recommended to use dmctl encrypt to encrypt the plaintext password before using the password.
+
+# The configuration of all MySQL instances of source database required for the current migration task.
+mysql-instances:
+  - source-id: "mariadb"
+    block-allow-list: "bw-rule-1"
+
+# The global configuration of blocklist and allowlist. Each instance is referenced by a configuration item name.
+block-allow-list:
+  bw-rule-1:
+    do-dbs: ["test"]
+    # do-tables:
+    # - db-name: "test"
+    #   tbl-name: "t1"

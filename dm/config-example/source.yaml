@@ -1,0 +1,11 @@
+# The ID must be unique.
+source-id: "mariadb"
+
+# Configures whether DM-worker uses the global transaction identifier (GTID) to pull binlogs. To enable GTID, the upstream MySQL must have enabled GTID. If the upstream MySQL has automatic source-replica switching, the GTID mode is required.
+#enable-gtid: true
+
+from:
+  host: "127.0.0.1"
+  user: "maria"
+  password: "pwd" # Plaintext password is supported but not recommended. It is recommended to use dmctl encrypt to encrypt the plaintext password before using the password.
+  port: 3306

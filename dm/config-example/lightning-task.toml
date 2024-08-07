@@ -1,0 +1,31 @@
+[lightning]
+status-addr = ':8289'
+level = "info"
+max-size = 128            # MB
+max-days = 28
+max-backups = 14
+region-concurrency = 32
+check-requirements = true
+
+[checkpoint]
+enable = true
+driver = "file"
+dsn = "lightning_checkpoint.pb"
+
+[conflict]
+strategy = "error"
+threshold = 10000
+
+[mydumper]
+# https://docs.pingcap.com/zh/tidb/v6.6/backup-and-restore-storages#uri-%E6%A0%BC%E5%BC%8F。
+data-source-dir = "dumped_data"
+
+[tikv-importer]
+backend = "tidb"
+
+[tidb]
+host = "127.0.0.1"
+port = 3316
+user = "eloq"
+password = "eloq"
+log-level = "error"

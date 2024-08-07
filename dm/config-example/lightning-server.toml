@@ -1,0 +1,50 @@
+[lightning]
+server-mode = true
+status-addr = ':8289'
+level = "info"
+file = "logs/lightning.log"
+max-size = 128              # MB
+max-days = 28
+max-backups = 14
+region-concurrency = 32
+check-requirements = true   # 启动之前检查集群是否满足最低需求。
+
+[checkpoint]
+# 是否启用断点续传。
+# 导入数据时，TiDB Lightning 会记录当前表导入的进度。
+# 所以即使 TiDB Lightning 或其他组件异常退出，在重启时也可以避免重复再导入已完成的数据。
+enable = true
+# 存储断点的方式。
+#  - file：存放在本地文件系统。
+#  - mysql：存放在兼容 MySQL 的数据库服务器。
+driver = "file"
+dsn = "lightning_checkpoint.pb"
+
+[conflict]
+# 从 v7.3.0 开始引入的新版冲突数据处理策略。默认值为 ""。从 v8.0.0 开始，TiDB Lightning 优化了物理导入模式和逻辑导入模式的冲突策略。
+# - ""：在物理导入模式下，不进行冲突数据检测和处理。如果源文件存在主键或唯一键冲突的记录，后续步骤会报错。在逻辑导入模式下，"" 策略将被转换为 "error" 策略处理。
+# - "error"：检测到导入的数据存在主键或唯一键冲突的数据时，终止导入并报错。
+# - "replace"：遇到主键或唯一键冲突的数据时，保留最新的数据，覆盖旧的数据。
+#              使用物理导入模式时，冲突数据将被记录到目标 TiDB 集群中的 `lightning_task_info.conflict_error_v2` 表（该表用于记录物理导入模式下后置冲突检测到的冲突数据）
+#              和 `conflict_records` 表（该表用于记录逻辑导入模式和物理导入模式下前置冲突检测到的冲突数据）中。
+#              如果在物理导入模式下配置了 `conflict.strategy = "replace"`，可以在 `lightning_task_info.conflict_view` 视图中查看冲突数据。
+#              你可以根据业务需求选择正确的记录重新手动写入到目标表中。注意，该方法要求目标 TiKV 的版本为 v5.2.0 或更新版本。
+# - "ignore"：遇到主键或唯一键冲突的数据时，保留旧的数据，忽略新的数据。仅当导入模式为逻辑导入模式时可以使用该选项。
+strategy = "error"
+# 控制 strategy 为 "replace" 或 "ignore" 时，能处理的冲突错误数的上限。仅在 strategy 为 "replace" 或 "ignore" 时可配置。默认为 10000。如果设置的值大于 10000，导入过程可能会出现性能下降的情况。
+threshold = 10000
+
+[tikv-importer]
+# 导入模式配置，设为 tidb 即使用逻辑导入模式
+backend = "tidb"
+
+[tidb]
+# 目标集群的信息。EloqSQL 的地址，填一个即可。
+host = "127.0.0.1"
+port = 3316
+user = "eloq"
+# 设置连接 TiDB 的密码，可为明文或 Base64 编码。
+password = "eloq"
+# tidb-lightning 引用了 TiDB 库，并生成产生一些日志。
+# 设置 TiDB 库的日志等级。
+log-level = "error"
